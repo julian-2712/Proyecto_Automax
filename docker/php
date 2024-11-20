@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+docker run                                                                 \
+    --rm                                                                   \
+    -u 1000:1000                                                           \
+    -v ${PWD}:/application                                                 \
+    -w "/application"                                                      \
+    composer:2.5.5                                                         \
+    php "$@"
