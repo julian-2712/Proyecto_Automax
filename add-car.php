@@ -4,7 +4,8 @@ include "./header.php";
 include "./connect-mysql.php";
 
 if (empty($_SESSION['name'])) {
-    header('Location: ./login.php');
+    //header('Location: ./login.php');
+    exit;
 }
 
 ?>

@@ -17,7 +17,7 @@ $cars = getCars();
                 <li>
                     <div class="design">
                         <div class="car-image">
-                            <img src="uploads/<?php echo $car['image']; ?>"
+                            <img src="http://automax.local/uploads/<?php echo $car['image']; ?>"
                                 alt="<?php echo $car['make'] . ' ' . $car['model']; ?>" height="400" width="600">
                         </div>
                         <div class="car-details">

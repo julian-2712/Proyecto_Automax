@@ -1,0 +1,66 @@
+volumes:
+    automax_mysql_var_lib:
+        external: true
+
+networks:
+    automax-network:
+        external: true
+
+services:
+  nginx:
+    container_name: automax-nginx
+    build:
+        context: ./docker/nginx
+        dockerfile: Dockerfile
+        args:
+            - UID=${UID:-1000}
+            - GID=${GID:-1000}
+    ports:
+        - 8000:80
+    volumes:
+        - ./:/var/www/html:delegated
+    depends_on:
+        - php
+        - mysql
+    networks:
+        automax-network:
+            ipv4_address: 172.110.0.11
+            aliases:
+                - automax-nginx-dev.sandbox
+  php:
+    container_name: automax-php
+    build:
+      context: docker/php-fpm
+      dockerfile: Dockerfile
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
+    ports:
+      - 1236:9000
+    volumes:
+      - ./:/var/www/html:delegated
+    networks:
+      automax-network:
+        ipv4_address: 172.110.0.12
+        aliases:
+         - automax-php-dev.sandbox
+    depends_on:
+        - mysql
+
+  mysql:
+    container_name: automax-mysql
+    image: mysql
+    ports:
+        - "9906:3310"
+    volumes:
+        - automax_mysql_var_lib:/var/lib/mysql
+    environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: automax
+        MYSQL_USER: automax
+        MYSQL_PASSWORD: automax
+    networks:
+      automax-network:
+        ipv4_address: 172.110.0.13
+        aliases:
+          - automax-mysql-dev.sandbox

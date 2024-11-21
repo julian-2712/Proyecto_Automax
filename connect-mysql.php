@@ -2,9 +2,9 @@
 
 function connection()
 {
-  $servername = "localhost";
+  $servername = "172.110.0.13";
   $username = "root";
-  $password = "";
+  $password = "root";
   $database = "automax";
 
   // Create connection
