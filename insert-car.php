@@ -1,4 +1,7 @@
 <?php
+
+ob_start(); // Start output buffering
+
 include './src/helpers.php';
 include './connect-mysql.php';
 
@@ -68,4 +71,7 @@ if ($recordInserted) {
 } else {
     header('Location: ./add-car.php');
 }
+
+ob_end_flush(); // Flush the output buffer at the end
+
 ?>

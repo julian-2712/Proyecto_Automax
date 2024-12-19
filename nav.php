@@ -3,11 +3,11 @@
 $uri = $_SERVER['REQUEST_URI'];
 
 $active = match ($uri) {
-    '/Project/index.php' => 'index',
-    '/Project/listing.php' => 'listing',
-    '/Project/add-car.php' => 'add-car',
-    '/Project/login.php' => 'login',
-    '/Project/register.php' => 'login',
+    '/index.php' => 'index',
+    '/listing.php' => 'listing',
+    '/add-car.php' => 'add-car',
+    '/login.php' => 'login',
+    '/register.php' => 'login',
     default => 'index'
 };
 
@@ -16,7 +16,6 @@ $active = match ($uri) {
 
 <nav class="header">
     <a href="index.php" class="logo"><img src="images/automax.png" alt="Automax"/></a>
-    <!-- Add the container for the menu icon -->
     <div class="container" onclick="myFunction(this)">
         <div class="bar1"></div>
         <div class="bar2"></div>

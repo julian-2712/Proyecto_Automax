@@ -1,16 +1,19 @@
 <?php
+ob_start(); // Start output buffering
 
 include "./header.php";
 include "./connect-mysql.php";
 
 if (empty($_SESSION['name'])) {
-    //header('Location: ./login.php');
+    header('Location: ./login.php');
     exit;
 }
 
+ob_end_flush(); // Flush the output buffer at the end
 ?>
 
-<main>
+
+    <main>
     <div class="addcarform">
         <h2>Add your vehicle</h2>
         <form action="insert-car.php" method="post" class="formaddcar" enctype="multipart/form-data">
