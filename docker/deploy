@@ -1,0 +1,7 @@
+#!/bin/sh
+gitPull () {
+    git pull --rebase origin master
+}
+gitPull myDir
+
+echo "deploying";
